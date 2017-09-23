@@ -6,6 +6,8 @@ import store from './store'
 import api from './api'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import './assets/global.css'
+
 
 Vue.use(ElementUI)
 
@@ -44,7 +46,7 @@ Vue.mixin({
 })
 
 /* eslint-disable no-new */
-new Vue({
+var app = new Vue({
   el: '#app',
   router,
   store,

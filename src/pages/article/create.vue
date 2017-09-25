@@ -38,7 +38,7 @@ export default {
 
   name: 'create',
 
-  data () {
+  data() {
     return {
       categorys: [],
       form: {
@@ -60,27 +60,28 @@ export default {
       }
     };
   },
-  created(){
+  created() {
     this.getCategory();
   },
-  mounted(){
+  mounted() {
     this.initEditor();
+    this.$Progress.finish();
   },
   computed: mapState(['user']),
   methods: {
-    content(){
+    content() {
       return editor.$txt.html();
     },
-    initEditor(){
+    initEditor() {
       let E = window.wangEditor;
       editor = new E('editor')
 
       editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
-          // https://www.kancloud.cn/wangfupeng/wangeditor2/113975 请看这里
-          if (item === 'location') {
-              return null;
-          }
-          return item;
+        // https://www.kancloud.cn/wangfupeng/wangeditor2/113975 请看这里
+        if (item === 'location') {
+          return null;
+        }
+        return item;
       });
 
       editor.create();
@@ -90,7 +91,7 @@ export default {
       }
 
     },
-    getCategory(){
+    getCategory() {
       const cq = new this.$api.SDK.Query('Category');
       cq.find().then((categorys) => {
         this.categorys = categorys;
@@ -98,18 +99,18 @@ export default {
       }).catch(console.error)
     },
 
-    validateContent(){
+    validateContent() {
       if (this.content() == '<p><br></p>') {
         this.validate.error = true;
-        $('.wangEditor-container').css({borderColor:'red'})
+        $('.wangEditor-container').css({ borderColor: 'red' })
         return;
       }
 
       this.validate.error = false;
-      $('.wangEditor-container').css({borderColor:'#ccc'})
+      $('.wangEditor-container').css({ borderColor: '#ccc' })
     },
 
-    createArticle(){
+    createArticle() {
       const article = new this.$api.SDK.Object('Article');
       article.set('author', this.user);
       article.set('title', this.form.title);
@@ -118,24 +119,25 @@ export default {
       return article;
     },
 
-    setACL(article){
+    setACL(article) {
       // 设置访问权限
       // https://leancloud.cn/docs/acl-guide.html#单用户权限设置
       let acl = new this.$api.SDK.ACL();
       acl.setPublicReadAccess(true);
-      acl.setWriteAccess(this.user,true);
+      acl.setWriteAccess(this.user, true);
       article.setACL(acl);
     },
 
-    save(article){
+    save(article) {
       article.save().then((article) => {
         console.log(article);
-        const message =  `文章《${article.get('title')}》发布成功`;
-        this.$message({message, type: 'success'})
+        const message = `文章《${article.get('title')}》发布成功`;
+        this.$message({ message, type: 'success' })
+        this.$router.replace({ name: 'ArticleShow', params: { id: arcticle.id } });
       }).catch(console.error);
     },
 
-    submit(){
+    submit() {
       this.$refs.form.validate((valid) => {
         this.validateContent();
         if (valid) {
@@ -144,7 +146,7 @@ export default {
           this.save(article);
         } else {
           console.log('error submit!!');
-           this.$message.error('错了哦，您填写的信息有错误，请按照提示修改。');
+          this.$message.error('错了哦，您填写的信息有错误，请按照提示修改。');
           return false;
         }
       })
@@ -155,11 +157,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.oprator{
+.oprator {
   margin-top: 20px;
   float: right;
 }
-#editor{
+
+#editor {
   min-height: 300px;
 }
 </style>

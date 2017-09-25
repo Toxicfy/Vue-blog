@@ -92,8 +92,8 @@ export default {
           user.signUp().then((loginUser) => {
             // this.$store.dispatch('setUser', loginUser); // 保存到 Vuex 中
             this.$store.dispatch('login', loginUser); // 保存到 Vuex 中
-            this.$router.go(-1) // 回到上一页
-            console.log(this.$router);
+            this.$router.replace('/');   //回到主页
+          
             this.$message.success("注册成功！")
           }).catch(error => {
             console.error(error)

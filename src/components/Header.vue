@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <el-menu :router="true" :default-active="active" class="el-menu" mode="horizontal" @select="handleSelect">
-      <el-menu-item class="logo" index="/">番薯</el-menu-item>
+      <el-menu-item class="logo" index="/">Home</el-menu-item>
       <el-menu-item index="/article?type=all">
-        <i class="fa fa-flag" aria-hidden="true"></i> 探索</el-menu-item>
+        <i class="fa fa-flag" aria-hidden="true"></i> 文章</el-menu-item>
 
       <template v-if="user">
         <li class="el-menu-item right" @click="heandleExit">

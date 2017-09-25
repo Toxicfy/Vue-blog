@@ -2,10 +2,15 @@
   <div class="container">
     <h3 class="title is-3">发布新的文章</h3>
     <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="top">
+
       <el-form-item label="文章分类" prop="category">
+
         <el-select v-model="form.category" placeholder="请选择文章分类">
-          <el-option v-for="cate in categorys" :key="cate.objectId" :label="cate.get('name')" :value="cate">{{ cate.get('name') }}</el-option>
+          <el-option v-for="cate in categorys" :key="cate.objectId" :label="cate.get('name')" :value="cate">
+            {{ cate.get('name') }}
+          </el-option>
         </el-select>
+
       </el-form-item>
 
       <el-form-item label="文章标题" prop="title">
@@ -133,7 +138,9 @@ export default {
         console.log(article);
         const message = `文章《${article.get('title')}》发布成功`;
         this.$message({ message, type: 'success' })
-        this.$router.replace({ name: 'ArticleShow', params: { id: arcticle.id } });
+        
+        this.$router.replace('/article?type=me');    
+          
       }).catch(console.error);
     },
 
@@ -165,4 +172,5 @@ export default {
 #editor {
   min-height: 300px;
 }
+
 </style>

@@ -7,11 +7,11 @@ import signIn from '@/pages/signIn'
 import ArticleCreate from '@/pages/article/create'
 import ArticleShow from '@/pages/article/index'
 import ArticleEdit from '@/pages/article/edit'
+import User from '@/pages/user/index'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'Hello',
       component: Hello
@@ -45,11 +45,16 @@ export default new Router({
       component: ArticleShow,
     },
     {
+      path: '/user/:id',
+      name: 'User',
+      component: User,
+    },
+    {
       path: '/article/:id/edit',
       name: 'ArticleEdit',
       component: ArticleEdit,
-         meta: {
-       needLogin: true
+      meta: {
+        needLogin: true
       }
     },
   ]

@@ -4,13 +4,23 @@
       <h2>{{ title }}</h2>
     </header>
     <section>
-      <article v-for="article in articles">
-        <h3>
-          <router-link :to="{ name:'ArticleShow', params: { id: article.id }}">{{ article.get('title') }}</router-link>
-          ---
-           <router-link :to="{name: 'User', params: { id: article.get('author').id}}">{{ article.get('author').get('username') }}</router-link>
-        </h3>
-      </article>
+      <el-col :span="16" class="article-list">
+        <ul >
+          <li v-for="article in articles">
+            <router-link :to="{ name:'ArticleShow', params: { id: article.id }}" class="item">
+              {{ article.get('title') }}
+            </router-link>
+
+            <router-link :to="{name: 'User', params: { id: article.get('author').id}}" class="item">
+              {{ article.get('author').get('username') }}
+            </router-link>
+          </li>
+        </ul>
+      </el-col>
+
+      <el-col :span="6" class="right">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi nemo tempora laboriosam molestias quidem, necessitatibus possimus eius vero, placeat adipisci quia amet quisquam doloribus fugit fuga? Fugit consequatur molestiae qui?
+      </el-col>
     </section>
   </div>
 </template>
@@ -107,4 +117,21 @@ header {
   margin-bottom: 5px;
   padding: 20px;
 }
+
+.article-list {
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+li {
+  width: 100%;
+  height: 60px;
+}
+
+.right {
+  padding: 20px;
+
+}
 </style>
+

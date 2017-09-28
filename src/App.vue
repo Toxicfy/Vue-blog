@@ -3,11 +3,13 @@
     <my-header></my-header>
     <router-view></router-view>
     <vue-progress-bar></vue-progress-bar>
+
   </div>
 </template>
 
 <script>
 import MyHeader from '@/components/Header';
+
 
 export default {
   name: 'app',

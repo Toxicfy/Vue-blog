@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <el-menu :router="true" :default-active="active" class="el-menu" mode="horizontal" @select="handleSelect">
-      <el-menu-item class="logo" index="/">Home</el-menu-item>
+      <el-menu-item class="logo" index="/">home</el-menu-item>
       <el-menu-item index="/article?type=all">
         <i class="fa fa-flag" aria-hidden="true"></i> 文章</el-menu-item>
-
       <template v-if="user">
         <li class="el-menu-item right" @click="heandleExit">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -66,8 +65,9 @@ export default {
 
 <style lang="css" scoped>
 .container {
-  padding: 0 10%;
+  padding: 0 5%; 
   background: #eef1f6;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .4)
 }
 
 .right {
@@ -76,13 +76,16 @@ export default {
 
 .logo {
   margin-left: 0;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 100;
-  background: #20a0ff;
+  background: #1f6091;
+  border-radius: 5px;
   color: #fff;
+  margin-right: 10px
 }
 
 .logo:hover {
-  background: #20a0ff;
+  background: #1f6091;
+  border-bottom: #1f6091;
 }
 </style>

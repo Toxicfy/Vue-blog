@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="pad2x">
     <h3 class="title is-3">发布新的文章</h3>
     <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="top">
 

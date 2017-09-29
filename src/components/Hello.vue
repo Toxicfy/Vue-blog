@@ -12,6 +12,26 @@
     </div>
     <div class="center">
       <el-row class="card pad">
+        <div class="card2">
+          <el-col class="item" :span="8">
+            <div class="item-img img1"></div>
+            <h2>设计师</h2>
+            <p> 设计师是从人与事物分析再以有道理的构造，他们通常在专门领域创造或提供创意，并利用各种视与道理方式传达的方式，表现法的功力作品，即设计师的实力
+            </p>
+          </el-col>
+          <el-col class="item" :span="8">
+            <div class="item-img img2"></div>
+            <h2>前端工程师</h2>
+            <p> 前端工程师是互联网时代软件产品研发中不可缺少的一种专业研发角色。从广义上来讲，所有用户终端产品与视觉和交互有关的部分，都是前端工程师的专业领域。</p>
+          </el-col>
+          <el-col class="item" :span="8">
+            <div class="item-img img3"></div>
+            <h2>后端工程师</h2>
+            <p> 后端工程师同样是互联网时代软件产品研发中不可缺少的一种专业研发角色。负责与前台的数据对接，数据库的存储优化等等</p>
+          </el-col>
+        </div>
+      </el-row>
+      <el-row class="card pad">
         <el-col :span="15">
           <video class="video" autoplay="true" loop="loop" width="710px" height="440px">
             <source src="//c1.mifile.cn/f/i/16/mix/summary/01.mp4" type="video/mp4">
@@ -31,31 +51,13 @@
             <p>然而感觉
               <b>mix2</b> 没有 mix 好看~~~</p>
             <br>
-            <el-button type="danger">按钮</el-button>
+            <el-button type="danger">To article</el-button>
           </div>
 
         </el-col>
       </el-row>
-      <el-row class="card pad">
-        <div class="card2">
 
-          <el-col :span="8" class="item">
-            
-            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officia sint dignissimos iste temporibus, assumenda cumque qui eligendi minima dolores. </p>
-          </el-col>
-          <el-col :span="8" class="item">
-            
-            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officia sint dignissimos iste temporibus, assumenda cumque qui eligendi minima dolores. </p>
-          </el-col>
-          <el-col :span="8" class="item">
-            
-            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officia sint dignissimos iste temporibus, assumenda cumque qui eligendi minima dolores. </p>
-          </el-col>
-
-        </div>
-      </el-row>
     </div>
-
   </div>
 </template>
 
@@ -107,6 +109,35 @@ export default {
 
 .card {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.card2 {
+  margin-left: 40px;
+  padding: 10px;
+}
+
+
+.card2 .item-img {
+  width: 100%;
+  height: 200px;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+
+.img1 {
+  background-image: url(../assets/2.svg)
+}
+
+.img2 {
+  background-image: url(../assets/1.svg)
+}
+
+.img3 {
+  background-image: url(../assets/3.svg)
+}
+
+.item p{
+  width: 85%;
 }
 
 </style>

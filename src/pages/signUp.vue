@@ -16,7 +16,6 @@
         <el-form-item label="确认密码" prop="cpwd">
           <el-input type="password" v-model="user.cpwd"></el-input>
         </el-form-item>
-
         <div class="oprator">
           <el-button class="submit" type="primary" @click="submitForm('form')">提交</el-button>
         </div>
@@ -84,16 +83,15 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 新建实例对象
           let user = new this.$api.SDK.User();
           user.setUsername(this.user.name);
           user.setPassword(this.user.pwd);
           user.setEmail(this.user.email);
 
           user.signUp().then((loginUser) => {
-            // this.$store.dispatch('setUser', loginUser); // 保存到 Vuex 中
             this.$store.dispatch('login', loginUser); // 保存到 Vuex 中
             this.$router.replace('/');   //回到主页
-          
             this.$message.success("注册成功！")
           }).catch(error => {
             console.error(error)

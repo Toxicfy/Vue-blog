@@ -1,8 +1,11 @@
 import Vue from 'vue'
+// 使用网页加载进度条
 import VueProgressBar from 'vue-progressbar'
 import App from './App'
 import router from './router'
+// 引入vuex的存储对象
 import store from './store'
+// 引入后端接口
 import api from './api'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
@@ -10,13 +13,16 @@ import './assets/global.css'
 
 
 Vue.use(ElementUI)
-
+/**
+ * 获取到当前用户然后储存在vuex中
+ */
 const user = api.SDK.User.current()
-console.log(user)
 if (user) {
   store.commit('setUser', user);
 }
-
+/**
+ * 配置进度条参数，并使用
+ */
 const options = {
   color: '#048888',
   // color: '#B61A1A',  
@@ -38,6 +44,7 @@ Vue.config.productionTip = false
 localStorage.setItem('debug', 'leandcloud*') //开启调试模式
 
 Vue.mixin({
+  // 每个文件在创建前注册$api =api
   beforeCreate() {
     if (!this.$api) {
       this.$api = api;

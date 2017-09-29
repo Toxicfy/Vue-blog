@@ -1,26 +1,31 @@
 <template>
-  <div class="container">
+  <div class="pad2x">
     <header>
       <h2>{{ title }}</h2>
     </header>
     <section>
-      <el-col :span="16" class="article-list">
-        <ul >
+      <div class="article-list ">
+        <ul>
           <li v-for="article in articles">
-            <router-link :to="{ name:'ArticleShow', params: { id: article.id }}" class="item">
-              {{ article.get('title') }}
-            </router-link>
-
-            <router-link :to="{name: 'User', params: { id: article.get('author').id}}" class="item">
-              {{ article.get('author').get('username') }}
-            </router-link>
+            <div class="article-content">
+              <div class="img">
+                <img src="https://dummyimage.com/300x120/#999/000" alt="img">
+              </div>
+              <div class="info">
+                <router-link :to="{ name:'ArticleShow', params: { id: article.id }}">
+                  <p class="article-title">
+                    {{ article.get('title') }}
+                  </p>
+                </router-link>
+                <br>
+                <router-link :to="{name: 'User', params: { id: article.get('author').id}}">
+                  {{ article.get('author').get('username') }}
+                </router-link>
+              </div>
+            </div>
           </li>
         </ul>
-      </el-col>
-
-      <el-col :span="6" class="right">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi nemo tempora laboriosam molestias quidem, necessitatibus possimus eius vero, placeat adipisci quia amet quisquam doloribus fugit fuga? Fugit consequatur molestiae qui?
-      </el-col>
+      </div>
     </section>
   </div>
 </template>
@@ -43,7 +48,6 @@ export default {
   },
   watch: {
     ['$route.query']() {
-      console.log('re render');
       this.articles = [];
       this.match();
     }
@@ -113,25 +117,37 @@ h2 {
 }
 
 header {
-  border-bottom: 1px solid #f2f2f2;
-  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
   padding: 20px;
 }
 
+.article-content {
+  /* background: #fafafa; */
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+.article-content .img{
+  margin-right: 50px;
+}
 .article-list {
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  width: 76%;
+  margin: 0 auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
 }
 
-li {
-  width: 100%;
-  height: 60px;
+.article-list li {
+  display: inline;
 }
 
-.right {
-  padding: 20px;
+.article-list .info {
+  display: inline-block;
+}
 
+.article-title{
+  font-size: 18px;
+  line-height: 24px; 
 }
 </style>
 

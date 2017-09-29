@@ -1,10 +1,14 @@
 body{
   font-family: Pingfang SC,Microsoft Yahei,Lato,Helvetica;
   letter-spacing: 1.2px;
+  background: url(./background.png)
 }
 
 .pad {
   padding: 0 2%;
+}
+.pad2x {
+  padding: 0 4%;
 }
 
 ul {

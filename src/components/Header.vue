@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <el-menu :router="true" :default-active="active" class="el-menu" mode="horizontal" @select="handleSelect">
+  <div class="pad">
+    <el-menu :router="true" :default-active="active" mode="horizontal">
       <el-menu-item class="logo" index="/">home</el-menu-item>
       <el-menu-item index="/article?type=all">
-        <i class="fa fa-flag" aria-hidden="true"></i> 文章</el-menu-item>
+        <i class="fa fa-flag" aria-hidden="true"></i> 文章
+      </el-menu-item>
+      <!-- v-if、v-else实现登陆前后模板的变化 -->
       <template v-if="user">
         <li class="el-menu-item right" @click="heandleExit">
           <i class="fa fa-sign-out" aria-hidden="true"></i>
           注销</li>
-
         <el-submenu index="5" class="right">
           <span slot="title"> {{ user.getUsername() }} </span>
           <el-menu-item index="me" :route="{ name:'User', params:{ id : user.id }}">我的主页</el-menu-item>
@@ -23,7 +24,6 @@
         <el-menu-item index="./signIn" class="right">
           <i class="fa fa-key" aria-hidden="true"></i> 登陆</el-menu-item>
       </template>
-
     </el-menu>
   </div>
 </template>
@@ -31,7 +31,7 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
-// 导入vuex中的mapState方法
+// 导入vuex中的mapState 和 mapAction
 export default {
 
   name: 'Header',
@@ -41,6 +41,7 @@ export default {
     };
   },
   created() {
+    // 解决路由高亮
     this.active = this.$route.path;
     this.$router.afterEach((to, from) => {
       this.active = to.path;
@@ -49,9 +50,6 @@ export default {
   computed: mapState(['user']),
   // 将mapstate映射到计算属性当中
   methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
     ...mapActions(['exit']),
     heandleExit() {
       this.exit();
@@ -64,7 +62,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.container {
+.pad {
   padding: 0 5%; 
   background: #eef1f6;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .4)

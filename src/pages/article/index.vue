@@ -1,14 +1,19 @@
 <template>
-  <div class="container">
+  <div class="pad2x">
     <template v-if="article">
       <h2>{{ article.get('title') }}</h2>
-      <div class="oprator" v-if="uid == article.get('author').id">
-        <router-link :to="{name:'ArticleEdit',params:{id:article.id}}" tag="button">
-          修改
-        </router-link>
-        <button @click="destroy">删除</button>
-      </div>
+
+        <p> {{ article.get('author').get('username') }}</p>
+        <p> {{ article.get('author').get('updatedAt') }}</p>
+
       <div class="content" v-html="article.get('content')"></div>
+      <div class="oprator" v-if="uid == article.get('author').id">
+        <router-link :to="{name:'ArticleEdit',params:{id:article.id}}">
+          <el-button type="warning">修改</el-button>
+        </router-link>
+
+        <el-button type="danger" @click="destroy">删除</el-button>
+      </div>
     </template>
   </div>
 </template>
@@ -52,5 +57,22 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.pad2x {
+  margin: 20px;
+}
 
+.content {
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.oprator {
+  margin-top: 30px;
+}
+p{
+  display: inline;
+  margin-right: 10px;
+  color: #999;
+}
 </style>

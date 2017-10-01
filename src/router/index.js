@@ -8,6 +8,9 @@ import ArticleCreate from '@/pages/article/create'
 import ArticleShow from '@/pages/article/index'
 import ArticleEdit from '@/pages/article/edit'
 import User from '@/pages/user/index'
+import Followee from '@/pages/user/myFollowee'
+import Follower from '@/pages/user/myFollower'
+
 Vue.use(Router)
 
 export default new Router({
@@ -57,5 +60,21 @@ export default new Router({
         needLogin: true
       }
     },
+    {
+      path: '/followee',
+      nanme: 'Followee',
+      component: Followee,
+      meta: {
+        needLogin: true
+      }
+    },
+    {
+      path: '/follower',
+      nanme: 'Follower',
+      component: Follower,
+      meta: {
+        needLogin: true
+      }
+    }
   ]
 })

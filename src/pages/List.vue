@@ -9,17 +9,16 @@
           <li v-for="article in articles">
             <div class="article-content">
               <div class="img">
-                <img src="https://dummyimage.com/300x120/#999/000" alt="img">
+                <img src="https://dummyimage.com/300x100/#999/000" alt="img">
               </div>
               <div class="info">
-                <router-link :to="{ name:'ArticleShow', params: { id: article.id }}">
+                <router-link :to="{ name:'ArticleShow', params: { id: article.id }}" class="title"> 
                   <p class="article-title">
                     {{ article.get('title') }}
                   </p>
                 </router-link>
-                <br>
                 <router-link :to="{name: 'User', params: { id: article.get('author').id}}">
-                  {{ article.get('author').get('username') }}
+                   {{ article.get('author').get('username') }} —— 创建于： {{ article.get('author').get('createdAt') }}
                 </router-link>
               </div>
             </div>
@@ -112,6 +111,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+a {
+  color: #000;
+  display: inline;
+}
+li{
+  margin-bottom: 4px;
+}
 h2 {
   text-align: center;
 }
@@ -122,17 +128,8 @@ header {
   padding: 20px;
 }
 
-.article-content {
-  /* background: #fafafa; */
-  display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 10px;
-}
-.article-content .img{
-  margin-right: 50px;
-}
 .article-list {
-  width: 76%;
+  width: 74%;
   margin: 0 auto;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
 }
@@ -141,13 +138,21 @@ header {
   display: inline;
 }
 
-.article-list .info {
-  display: inline-block;
+.article-content {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  /* margin-bottom: 20px; */
 }
 
-.article-title{
-  font-size: 18px;
-  line-height: 24px; 
+.article-content .img {
+  margin-right: 20px;
+}
+
+.article-list .title{
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 800;
 }
 </style>
 

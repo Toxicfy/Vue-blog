@@ -61,6 +61,7 @@ export default {
     };
   },
   created() {
+    // 获取到内容，然后进行赋值
     this.getCategory();
     this.getArticle();
   },

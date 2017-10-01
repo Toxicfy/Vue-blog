@@ -1,13 +1,16 @@
 <template>
-  <div class="container" v-if="current_user">
+  <div class="pad2x" v-if="current_user">
     <!-- 包括两个部分，用户and文章展示？？ -->
     <h3>{{ current_user.get('username') }}</h3>
 
     <hr>
     <div class="oprator" v-if="user">
-      <button v-if="user.id != current_user.id" @click="toggleFollow">{{ followed? '取消关注':'关注' }}该用户</button>
+      <el-button type="primary" v-if="user.id != current_user.id" @click="toggleFollow">
+        {{ followed? '取消关注':'关注' }}该用户
+      </el-button>
     </div>
-    <ul>
+    <ul class="list">
+      <h3>动态列表</h3>
       <li v-for="article in articles"><router-link :to="{ name: 'ArticleShow', params: {id: article.id} }">{{ article.get('title') }}</router-link></li>
     </ul>
 
@@ -91,4 +94,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.list{
+  margin-top: 20px;
+  
+}
 </style>

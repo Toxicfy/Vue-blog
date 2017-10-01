@@ -1,12 +1,12 @@
 <template>
-  <div class="pad2x">
+  <div class="pad3x">
     <h3 class="title is-3">发布新的文章</h3>
     <el-form ref="form" :model="form" :rules="rules" label-width="80px" label-position="top">
 
       <el-form-item label="文章分类" prop="category">
 
         <el-select v-model="form.category" placeholder="请选择文章分类">
-          <el-option v-for="cate in categorys" :key="cate.objectId" :label="cate.get('name')" :value="cate">
+          <el-option v-for="cate in categorys" :key="cate.id" :label="cate.get('name')" :value="cate">
             {{ cate.get('name') }}
           </el-option>
         </el-select>
@@ -108,11 +108,12 @@ export default {
       if (this.content() == '<p><br></p>') {
         this.validate.error = true;
         $('.wangEditor-container').css({ borderColor: 'red' })
-        return;
+        return false;
       }
 
       this.validate.error = false;
       $('.wangEditor-container').css({ borderColor: '#ccc' })
+      return true;
     },
 
     createArticle() {
@@ -138,16 +139,16 @@ export default {
         console.log(article);
         const message = `文章《${article.get('title')}》发布成功`;
         this.$message({ message, type: 'success' })
-        
-        this.$router.replace('/article?type=me');    
-          
+
+        this.$router.replace('/article?type=me');
+
       }).catch(console.error);
     },
 
     submit() {
       this.$refs.form.validate((valid) => {
-        this.validateContent();
-        if (valid) {
+        const me = this.validateContent();
+        if (valid && me) {
           const article = this.createArticle();
           this.setACL(article);
           this.save(article);
@@ -172,5 +173,4 @@ export default {
 #editor {
   min-height: 300px;
 }
-
 </style>

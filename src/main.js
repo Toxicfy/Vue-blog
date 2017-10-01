@@ -52,6 +52,21 @@ Vue.mixin({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.needLogin)) {
+    if (!store.state.user) {
+      app.$message.error("请先登录");
+      next({
+        path: '/signIn'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+
 /* eslint-disable no-new */
 var app = new Vue({
   el: '#app',

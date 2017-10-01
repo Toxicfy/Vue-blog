@@ -14,7 +14,9 @@
           <span slot="title"> {{ user.getUsername() }} </span>
           <el-menu-item index="me" :route="{ name:'User', params:{ id : user.id }}">我的主页</el-menu-item>
           <el-menu-item index="/article/create">发布文章</el-menu-item>
-          <el-menu-item index="/article?type=me">我的文章</el-menu-item>
+          <el-menu-item index="/followee">我的关注</el-menu-item>
+          <el-menu-item index="/follower">我的粉丝</el-menu-item>
+          <!-- <el-menu-item index="/article?type=me">我的文章</el-menu-item> -->
           <el-menu-item index="5-3">消息</el-menu-item>
         </el-submenu>
       </template>
@@ -63,7 +65,7 @@ export default {
 
 <style lang="css" scoped>
 .pad {
-  padding: 0 5%; 
+  padding: 0 5%;
   background: #eef1f6;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .4)
 }

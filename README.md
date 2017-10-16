@@ -1,4 +1,3 @@
-# fanshu
 
 > A Vue.js project
 
